@@ -14,7 +14,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 group :production do
  gem 'therubyracer', :platforms => :ruby
- gem "mysql2"
+ gem "mysql2", '~> 0.3.13'
 end
 
 group :development, :test do
