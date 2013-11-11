@@ -2,7 +2,7 @@ require "bundler/capistrano"
 require "capistrano_colors"
 
 set :application, "movie"
-set :repository,  "https://kmasaharu@bitbucket.org/kmasaharu/movie_server.git"
+set :repository,  "https://github.com/kmasaharu/movie_server.git"
 set :user, "hori"
 set :use_sudo, false
 set :deploy_to, "/var/www/movie"
