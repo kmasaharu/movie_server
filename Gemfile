@@ -12,10 +12,10 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 
-#group :production do
-# gem "therubyracer"
-# gem "mysql2"
-#end
+group :production do
+ gem 'therubyracer', :platforms => :ruby
+ gem "mysql2"
+end
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
@@ -28,13 +28,10 @@ group :development, :test do
 end
 
 group :development do
-  gem 'capistrano', :require => false
-  gem 'capistrano-rails', :require => false
-  gem 'capistrano-bundler', :require => false
+  gem 'capistrano', '~>2.15.5', :require => false
+  gem 'capistrano-ext', :require => false
+  gem 'capistrano_colors', :require => false
 end
-
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -51,14 +48,8 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
 # Use unicorn as the app server
 # gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]

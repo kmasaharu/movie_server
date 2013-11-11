@@ -1,6 +1,4 @@
-require 'capistrano/setup'
-require 'capistrano/deploy'
-require 'capistrano/bundler'
-require 'capistrano/rails'
-
-# Loads custom tasks from `lib/capistrano/tasks' if you have any defined.
+load 'deploy'
+# Uncomment if you are using Rails' asset pipeline
+load 'deploy/assets'
+load 'config/deploy' # remove this line to skip loading any of the default tasks
