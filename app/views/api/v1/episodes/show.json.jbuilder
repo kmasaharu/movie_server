@@ -1,2 +1,2 @@
 json.extract! @titles, :id, :title
-json.episodes @episodes, :name, :url, :created_at
+json.episodes @episodes, :name, :url, :image_url, :created_at
