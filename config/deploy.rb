@@ -4,7 +4,7 @@ require "capistrano_colors"
 set :application, "movie"
 set :repository,  "https://github.com/kmasaharu/movie_server.git"
 set :user, "hori"
-set :use_sudo, true
+set :use_sudo, false
 set :deploy_to, "/var/www/movie"
 set :deploy_via, :remote_cache
 set :bundle_flags, "--quiet"
