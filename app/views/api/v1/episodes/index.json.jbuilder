@@ -1,7 +1,7 @@
 json.array!(@episodes) do |ep|
 	json.extract! ep, 		:title_id
-	json.extract! ep.title, :title
-	json.extract! ep, 		:name, :url, :image_url, :created_at
+#	json.extract! ep.title, :title
+	json.extract! ep, 		:id, :name, :url, :image_url, :created_at
 end
 
 #json.array!(@titles) do |title|
