@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131112133207) do
+ActiveRecord::Schema.define(version: 20131123064918) do
 
   create_table "episodes", force: true do |t|
     t.integer  "title_id"
-    t.text     "name"
-    t.text     "url"
+    t.string   "name"
+    t.string   "url",        limit: 1024
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image_url"
+    t.string   "image_url",  limit: 1024
   end
 
   create_table "rails_admin_histories", force: true do |t|
@@ -35,12 +35,19 @@ ActiveRecord::Schema.define(version: 20131112133207) do
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories"
 
-  create_table "titles", force: true do |t|
-    t.string   "title"
-    t.integer  "favorite_count"
+  create_table "rankings", force: true do |t|
+    t.integer  "title_id"
+    t.integer  "count"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image_url"
+  end
+
+  create_table "titles", force: true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_url",   limit: 1024
+    t.text     "discription"
   end
 
 end

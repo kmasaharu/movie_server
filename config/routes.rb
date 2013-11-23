@@ -4,8 +4,9 @@ Movie::Application.routes.draw do
   
   namespace :api do
     namespace :v1 do
-      resources :titles, only: [:index, :show, :create, :update, :destroy]
-      resources :episodes, only: [:index, :show, :create, :update, :destroy]
+      resources :titles,    only: [:index, :show, :create, :update, :destroy]
+      resources :episodes,  only: [:index, :show, :create, :update, :destroy]
+      resources :rankings,    only: [:index, :show, :create, :update, :destroy]
     end
   end
 end
