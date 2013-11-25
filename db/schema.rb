@@ -42,18 +42,11 @@ ActiveRecord::Schema.define(version: 20131125141800) do
     t.datetime "updated_at"
   end
 
-  create_table "sites", force: true do |t|
-    t.string   "site_name"
-    t.string   "site_url",   limit: 1024
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "titles", force: true do |t|
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image_url",   limit: 4096
+    t.string   "image_url",   limit: 1024
     t.text     "discription"
     t.string   "furigana"
     t.text     "keyword"

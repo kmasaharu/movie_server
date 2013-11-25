@@ -1,4 +1,5 @@
 class Episode < ActiveRecord::Base
+    belongs_to :site
     belongs_to :title
    
     validates :name,       presence: true

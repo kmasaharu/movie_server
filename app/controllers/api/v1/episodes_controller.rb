@@ -14,7 +14,7 @@ class Api::V1::EpisodesController < ApplicationController
     if param_times.nil?
       @episodes = Episode.find(:all, :conditions => {:title_id => params[:id]})
     else
-      @episodes = Episode.find(:all, :conditions => ["updated_at >= '#{param_times}' and title_id = #{params[:id]}"], :include => [:title])
+      @episodes = Episode.find(:all, :conditions => ["updated_at >= '#{param_times}' and title_id = #{params[:id]}"])
     end
   end
   
