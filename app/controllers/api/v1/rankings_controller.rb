@@ -6,12 +6,12 @@ class Api::V1::RankingsController < ApplicationController
   end
   
   def update
-    @titles = Title.find(params[:id])
-    @titles.increment(:favorite_count)
-    if @titles.save 
+    @rankings = Ranking.find(params[:id])
+    @rankings.increment(:count)
+    if @rankings.save 
       head :ok
     else
-      render json: @titles.errors.full_message, status: :unprocessable_entity
+      render json: @rankings.errors.full_message, status: :unprocessable_entity
     end
   end
 end
