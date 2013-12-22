@@ -19,6 +19,10 @@ class Api::V1::TitlesController < ApplicationController
     end
   end
   
+  def show
+    @titles   = Title.find(params[:id])
+  end
+  
   private 
   def param_times
     if params[:year].nil? or params[:month].nil? or params[:day].nil? 
