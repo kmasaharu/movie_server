@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131125141800) do
+ActiveRecord::Schema.define(version: 20140111172901) do
 
   create_table "episodes", force: true do |t|
     t.integer  "title_id"
@@ -46,10 +46,11 @@ ActiveRecord::Schema.define(version: 20131125141800) do
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image_url",   limit: 1024
+    t.string   "image_url",       limit: 1024
     t.text     "discription"
     t.string   "furigana"
     t.text     "keyword"
+    t.boolean  "is_broadcasting"
   end
 
 end
