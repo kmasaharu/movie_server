@@ -2,7 +2,12 @@
 # See github.com/sferik/rails_admin for more informations
 
 RailsAdmin.config do |config|
-
+  
+  config.authorize_with do
+      authenticate_or_request_with_http_basic('Admin page') do |username, password|
+      username == 'hori' && password == '37443744'
+    end
+  end
 
   ################  Global configuration  ################
 
