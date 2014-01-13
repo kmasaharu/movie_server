@@ -2,19 +2,32 @@ class Api::V1::EpisodesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    if param_times.nil?
-      @episodes = Episode.find(:all, :include => [:title])
-    else
-      @episodes = Episode.find(:all, :conditions => ["updated_at >= '#{param_times}'"], :include => [:title])
+    @episodes = Rails.cache.read(request.url)
+    if @episodes.nil?
+      if param_times.nil?
+        @episodes = Episode.find(:all, :include => [:title])
+      else
+        @episodes = Episode.find(:all, :conditions => ["updated_at >= '#{param_times}'"], :include => [:title])
+      end
+      Rails.cache.write(request.url, @episodes, expires_in: 10.minutes)  # 10分で消える。
     end
   end
   
   def show
-    @titles   = Title.find(params[:id])
-    if param_times.nil?
-      @episodes = Episode.find(:all, :conditions => {:title_id => params[:id]})
-    else
-      @episodes = Episode.find(:all, :conditions => ["updated_at >= '#{param_times}' and title_id = #{params[:id]}"])
+    @titles = Rails.cache.read(request.url + 'title' + params[:id].to_s);
+    if @titles.nil?
+      @titles   = Title.find(params[:id])
+      Rails.cache.write(request.url + 'title' + params[:id].to_s, @titles, expires_in: 10.minutes)  # 10分で消える。
+    end
+    
+    @episodes = Rails.cache.read(request.url);
+    if @episodes.nil?
+      if param_times.nil?
+        @episodes = Episode.find(:all, :conditions => {:title_id => params[:id]})
+      else
+        @episodes = Episode.find(:all, :conditions => ["updated_at >= '#{param_times}' and title_id = #{params[:id]}"])
+      end
+      Rails.cache.write(request.url, @episodes, expires_in: 10.minutes)  # 10分で消える。
     end
   end
   

@@ -2,10 +2,14 @@ class Api::V1::TitlesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    if param_times.nil?
-      @titles = Title.all
-    else
-      @titles = Title.find(:all, :conditions => ["updated_at >= '#{param_times}'"])
+    @titles = Rails.cache.read(request.url)
+    if @titles.nil?
+      if param_times.nil?
+        @titles = Title.all
+      else
+        @titles = Title.find(:all, :conditions => ["updated_at >= '#{param_times}'"])
+      end
+      Rails.cache.write(request.url, @titles, expires_in: 10.minutes)  # 10分で消える。
     end
   end
   
@@ -20,7 +24,11 @@ class Api::V1::TitlesController < ApplicationController
   end
   
   def show
-    @titles   = Title.find(params[:id])
+    @titles = Rails.cache.read(request.url)
+    if @titles.nil?
+      @titles   = Title.find(params[:id])
+      Rails.cache.write(request.url, @titles, expires_in: 10.minutes)  # 10分で消える。
+    end
   end
   
   private 
