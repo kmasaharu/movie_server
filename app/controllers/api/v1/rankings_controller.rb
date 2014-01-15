@@ -4,7 +4,7 @@ class Api::V1::RankingsController < ApplicationController
   def index
     @rankings = Rails.cache.read(request.url)
     if @rankings.nil?
-      @rankings = Ranking.find(:all, :order => :count, :limit => 50)
+      @rankings = Ranking.find(:all, :order => 'count DESC')
       Rails.cache.write(request.url, @rankings, expires_in: 10.minutes)  # 10分で消える。
     end
   end
