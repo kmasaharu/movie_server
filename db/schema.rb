@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140111172901) do
+ActiveRecord::Schema.define(version: 20140118150100) do
 
   create_table "episodes", force: true do |t|
     t.integer  "title_id"
@@ -50,7 +50,8 @@ ActiveRecord::Schema.define(version: 20140111172901) do
     t.text     "discription"
     t.string   "furigana"
     t.text     "keyword"
-    t.boolean  "is_broadcasting"
+    t.boolean  "is_broadcasting",              default: false
+    t.boolean  "is_locking",                   default: false
   end
 
 end
